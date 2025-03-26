@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test AOI</title>
+    <!-- Include Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        Alege varianta corectă
+        <div id="timer" class="timer">30:00</div>
+        <div id="questionCounter" class="question-counter">1/22</div>
+    </div>
+    <div id="draggableBox">
+        <div class="slider-container">
+            <div class="slider-label">Rotește Imaginea</div>
+            <input type="range" id="frameSlider" min="1" value="1">
+        </div>
+    </div>
+    <div class="container">
+        <div class="image-section">
+            <img id="gifFrame" alt="GIF Frame">
+            <button id="resultsButton" style="display: none; position: absolute; top: 10px; right: 10px; background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;">
+                Back to Results
+            </button>            
+            
+        </div>
+    
+        <div class="options-section">
+            <h2>Question will appear here</h2>
+            <ul></ul>
+            <div class="button-container">
+                <button class="back-button" onclick="prevQuestion()">Înapoi</button>
+                <button class="next-button" onclick="nextQuestion()">Următoarea întrebare</button>
+            </div>
+        </div>
+    </div>
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <img id="modalImage" alt="Fullscreen Frame">
+            <div class="zoom-controls">
+                <button id="zoomIn">+</button>
+                <button id="zoomOut">−</button>
+            </div>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+
+
+<div id="resultsPage" class="hidden">
+    <div class="results-container">
+        <h2>Rezultatele Testului</h2>
+        <p id="resultMessage"></p>
+        <p id="scoreMessage"></p>
+        <ul id="reviewList"></ul>
+        <div class="button-container">
+            <button id="reviewQuestionsButton">Revizuiți întrebările</button>
+            <button id="restartButton">Reîncepeți testul</button>
+            <button id="backToResultsButton">Înapoi la rezultate</button>
+        </div>
+    </div>
+</div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

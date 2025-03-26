@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Test</title>
+    <!-- Include Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="landing.css">
+    <script src="script.js"></script>
+
+</head>
+<body>
+    <div class="landing-container">
+        <h1>Bun venit la testul de AOI!</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Nume utilizator:</label>
+                <input type="text" id="username" name="username" placeholder="Introduceți numele utilizatorului" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Parola:</label>
+                <input type="password" id="password" name="password" placeholder="Introduceți parola" required>
+            </div>
+            <button type="button" id="loginButton" onclick="login(document.getElementById('username').value)">Login</button>
+
+        </form>
+        <div id="loginError" class="hidden">Autentificare eșuată. Verificați credențialele.</div>
+        <p>Acest test se referă atât la componente pop cât și non-pop<br>Toate pozele sunt ale unor componente ce se inspectează la AOI <br>Pentru a promova testul trebuie să răspundeți la cel puțin 20 de întrebări în mod corect <br>După finalizarea testului se pot verifica atât răspunsurile corecte cât și cele greșite</p>
+        <ul class="test-details">
+            <li><strong>Număr de întrebări</strong> 22</li>
+            <li><strong>Procentaj de trecere:</strong> 90%</li>
+            <li><strong>Număr maxim de încercări:</strong> 5</li>
+            <li><strong>Timp limită:</strong> 30 minutes</li>
+        </ul>
+    </div>
+    <script>
+        // Redirect to the test page
+        document.getElementById('startTestButton').addEventListener('click', () => {
+            window.location.href = 'Test_AOI.html';
+        });
+    </script>
+</body>
+</html>

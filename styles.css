@@ -1,0 +1,511 @@
+/* Apply Inter font everywhere */
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh; /* Ensure the body fills the viewport height */
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.hidden {
+  display: none !important; 
+}
+
+.question-counter {
+  font-size: 18px;
+  color: white;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.timer {
+  font-size: 18px;
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  z-index: 1100; /* Ensure it is always above everything else */
+}
+
+.header {
+  background-color: #C12033;
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 24px;
+  flex-shrink: 0;
+  z-index: 1000; /* Ensure header is above all other content */
+  position: relative; /* Keep the header fixed or relative */
+}
+
+
+
+/* Container styles */
+.container {
+  display: flex; /* Flexbox layout for side-by-side alignment */
+  justify-content: space-between; /* Add space between image and options */
+  align-items: stretch; /* Ensure both sections align properly */
+  width: 100%;
+  height: calc(100vh - 50px); /* Full viewport height minus header */
+  box-sizing: border-box; /* Include padding/borders in width/height calculations */
+  overflow: hidden; /* Prevent content overflow */
+}
+
+/* Image Section styles */
+.image-section {
+  flex: 2; /* Take up 2/3 of the available space */
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+  height: 100%; /* Full height of the container */
+  overflow: hidden; /* Prevent image overflow */
+  position: relative;
+  box-sizing: border-box;
+  
+}
+
+.image-section img {
+  max-width: 100%; /* Scale image to fit width */
+  max-height: 100%; /* Scale image to fit height */
+  object-fit: contain; /* Ensure the image is fully visible without distortion */
+  border-radius: 10px;
+  
+  
+}
+
+.image-section input[type="range"] {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1400px;
+  display: block;
+  margin: 20px auto;
+  -webkit-appearance: none; /* WebKit-based browsers */
+  -moz-appearance: none; /* Mozilla-based browsers */
+  -ms-appearance: none; /* Microsoft browsers */
+  appearance: none; /* Standard property for compatibility */
+  background: #ddd;
+  height: 6px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+.image-section input[type="range"] {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1400px;
+  display: block;
+  margin: 20px auto;
+  appearance: none;
+  background: #ddd;
+  height: 6px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Restore blue background for the options section */
+.options-section {
+  flex: 1; /* Take up 1/3 of the available space */
+  background-color: #02404F; /* Blue background */
+  color: rgb(255, 255, 255); /* White text for contrast */
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  overflow-y: auto; /* Enable scrolling if content overflows */
+  box-sizing: border-box;
+}
+
+/* Style question text */
+.options-section h2 {
+  font-weight: 600; /* Regular font weight */
+  margin-bottom: 20px;
+  transition: font-weight 0.2s, border 0.2s; /* Smooth transition for hover/selection effects */
+}
+
+/* Options Section */
+.options-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Individual option styling */
+.options-section li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease, transform 0.2s ease; /* Smooth hover effect */
+  color: rgb(255, 255, 255); /* Ensure options text is readable on white background */
+}
+
+/* Hover effect */
+.options-section li:hover {
+  background-color: #000000; /* Light gray on hover */
+  transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+/* Radio input style */
+.options-section li input[type="radio"] {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* Highlight selected option */
+.options-section li input[type="radio"]:checked + label {
+  font-weight: 700; /* Bold text */
+  background-color: #C12033; /* Light blue background */
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease, font-weight 0.2s ease;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button-container button {
+  padding: 10px 20px;
+  font-size: 10px;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+}
+
+/* Common Button Styling */
+.back-button,
+.next-button {
+    font-size: 20px; /* Increase font size */
+    padding: 18px 25px; /* Add more padding for a larger button */
+    border-radius: 10px; /* More rounded corners */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+    font-weight: bold; /* Bold text for better readability */
+}
+
+/* Back Button (Red) */
+.back-button {
+    background-color: #C12033; /* Original red color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.back-button:hover {
+    background-color: #a81a2a; /* Slightly darker red on hover */
+    transform: scale(1.08); /* Enlarge slightly on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+}
+
+.back-button:active {
+    transform: scale(0.96); /* Slightly shrink on click */
+}
+
+/* Next Button (Green) */
+.next-button {
+    background-color: #388e3c; /* Original green color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.next-button:hover {
+    background-color: #218838; /* Slightly darker green on hover */
+    transform: scale(1.08); /* Enlarge slightly on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+}
+
+.next-button:active {
+    transform: scale(0.96); /* Slightly shrink on click */
+}
+
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent scrollbars */
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.modal img {
+  max-width: 90%;
+  max-height: 90%;
+  transform-origin: center center; /* Zoom in/out from the center */
+  transition: transform 0.3s ease; /* Smooth zooming effect */
+}
+
+.modal .zoom-controls {
+  position: absolute;
+  bottom: 10%;
+  display: flex;
+  gap: 10px;
+}
+
+.zoom-controls button {
+  font-size: 20px;
+  padding: 10px 15px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.zoom-controls button:hover {
+  opacity: 1;
+}
+
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal .close:hover {
+  color: #bbb;
+}
+
+/* Slider Container */
+.slider-container {
+  position: fixed; /* Keep the slider at a fixed position relative to the viewport */
+  bottom: 20px; /* Move slider slightly upward from the bottom */
+  left: 82.5%; /* Center the slider horizontally */
+  transform: translateX(-50%);
+  width: 90%; /* Allow responsiveness */
+  max-width: 600px; /* Set a maximum width */
+  text-align: center;
+  z-index: 10; /* Ensure it’s above all other content */
+  background-color: #fff; /* Background for better visibility */
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Slider Label */
+.slider-label {
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Slider Styles */
+#frameSlider {
+  -webkit-appearance: none; /* Remove default styles */
+  appearance: none; /* Standard property for compatibility */
+  width: 100%; /* Take the width of the container */
+  height: 8px;
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+}
+
+#frameSlider::-webkit-slider-runnable-track {
+  background: #ddd;
+  border-radius: 5px;
+  height: 8px;
+}
+
+#frameSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 2px solid #007BFF; /* Blue border for thumb */
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  position: relative;
+  top: -6px; /* Center the thumb vertically */
+  transition: transform 0.2s ease;
+}
+
+#frameSlider::-webkit-slider-thumb:hover {
+  transform: scale(1.2); /* Slightly enlarge thumb on hover */
+}
+
+#frameSlider:focus::-webkit-slider-thumb {
+  border-color: #0056b3; /* Darker blue on focus */
+}
+
+#frameSlider::-moz-range-track {
+  background: #ddd;
+  border-radius: 5px;
+  height: 8px;
+}
+
+#frameSlider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 2px solid #007BFF;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  position: relative;
+  top: -6px; /* Center the thumb vertically */
+  transition: transform 0.2s ease;
+}
+
+#frameSlider::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+#frameSlider::-ms-fill-lower {
+  background: #ddd;
+  border-radius: 5px;
+}
+
+#frameSlider::-ms-fill-upper {
+  background: #ddd;
+  border-radius: 5px;
+}
+
+#frameSlider::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 2px solid #007BFF;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  position: relative;
+  top: -6px; /* Center the thumb vertically */
+  transition: transform 0.2s ease;
+}
+
+#frameSlider::-ms-tooltip {
+  display: none;
+}
+
+
+#draggableBox {
+  position: absolute; /* Necessary for dragging */
+  z-index: 1000; /* Ensure it stays above other elements */
+  top: 100px;
+  left: 50px;
+  width: 300px;
+}
+
+
+/* Results */
+
+.hidden {
+  display: none;
+}
+
+.results-container {
+  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 600px;
+  max-height: 85vh; /* Limit the height to 70% of the viewport */
+  overflow-y: auto; /* Enable vertical scrolling */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.results-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.results-container p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.results-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.results-container::-webkit-scrollbar-thumb {
+  background: #c62828;
+  border-radius: 5px;
+}
+
+.results-container::-webkit-scrollbar-thumb:hover {
+  background: #af2810;
+}
+
+
+#reviewList {
+  text-align: left;
+  margin: 20px auto;
+  padding: 0;
+  list-style: none;
+}
+
+#reviewList li {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.button-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#reviewQuestionsButton {
+  background-color: #388e3c;
+  color: white;
+}
+
+#restartButton {
+  background-color: #C12033;
+  color: white;
+}
+
+
+
+
+
